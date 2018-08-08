@@ -1,6 +1,20 @@
+<!--
+
+  This is a dummy comment which should be stripped out by minification logic.
+
+  We have added an EJS script in the header section to enable TrackJS tracking only for production builds via defining a variable
+  "trackJSToken" in the HtmlWebPackplugin section - only for production webpack.config section.
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <% if (htmlWebpackPlugin.options.trackJSToken) { %>
+      <script>window._trackJs = { token: '<%=htmlWebpackPlugin.options.trackJSToken%>' };</script>
+      <script src="https://cdn.trackjs.com/releases/current/tracker.js">
+      </script>
+      <% } %>
     <meta charset="UTF-8">
   </head>
   <body>
@@ -17,6 +31,5 @@
 
       </tbody>
     </table>
-    <script src="bundle.js"></script>
   </body>
 </html>
